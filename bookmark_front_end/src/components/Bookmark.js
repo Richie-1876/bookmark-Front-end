@@ -17,6 +17,10 @@ class Bookmark extends React.Component {
       <h1>{this.props.bookmark.name}</h1>
       <a href={this.props.bookmark.link}><img src={this.props.bookmark.logo} alt=""/></a>
       <p>{this.props.bookmark.description}</p>
+      <div className="buttons">
+        <button>EDIT</button>
+        <button onClick={()=> this.props.deleteBookmark(this.props.bookmark.id)}>DELETE</button>
+      </div>
       </div>
     )
   }

@@ -11,6 +11,7 @@ class App extends React.Component {
     newBookmark: false
   }
   this.handleAddBookmark = this.handleAddBookmark.bind(this)
+  this.deleteBookmark = this.deleteBookmark.bind(this)
 }
 handleAddBookmark(bookmark){
   const copyBookmarks = [bookmark, ...this.state.bookmarks]
@@ -29,6 +30,21 @@ fetchBookmarks = async () => {
     console.log(data)
     this.setState({ bookmarks: data })
   }
+
+  async deleteBookmark(id){
+    try {
+      let response = await fetch(`http://localhost:3000/bookmarks/${id}`, {
+        method: "DELETE"
+      })
+      await response.json()
+      const foundBookmark = this.state.bookmarks.findIndex(bookmark => bookmark.id === id)
+      const copyBookmarks = [...this.state.bookmarks]
+      copyBookmarks.splice(foundBookmark, 1)
+      this.setState({bookmarks: copyBookmarks})
+    } catch (e) {
+      console.error(e)
+    }
+  }
   componentDidMount() {
     this.fetchBookmarks()
   }
@@ -44,7 +60,7 @@ render() {
     }
     <div>
       {this.state.bookmarks.map(bookmark =>
-        <Bookmark bookmark={bookmark}/>
+        <Bookmark bookmark={bookmark} deleteBookmark={this.deleteBookmark}/>
       )}
       </div>
     </div>
