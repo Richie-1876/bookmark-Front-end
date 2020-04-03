@@ -56,16 +56,26 @@ async  handleSubmit(bookmark){
         e.preventDefault()
         this.handleSubmit(this.props.bookmark)
       }}>
-        <input type='text' id='name' value={this.state.name} onChange={this.handleChange}/>
+      <div className="form-group">
 
-        <input type='text' id='logo' value={this.state.logo} onChange={this.handleChange}/>
+        <div className="form-row">
+          <input className="form-control" type='text' id='name' value={this.state.name} onChange={this.handleChange}/>
+        </div>
 
-        <textarea rows='4' cols='50' id='description' value={this.state.description} onChange={this.handleChange}></textarea>
+        <div className="form-row">
+        <input className="form-control" type='text' id='logo' value={this.state.logo} onChange={this.handleChange}/>
+        </div>
 
-        <input type='text' id='link' value={this.state.link} onChange={this.handleChange}/>
+        <div className="form-row">
+        <textarea className="form-control" rows='4' cols='50' id='description' value={this.state.description} onChange={this.handleChange}></textarea>
+        </div>
 
-        <input type="submit"/>
+        <div className="form-row">
+        <input className="form-control" type='text' id='link' value={this.state.link} onChange={this.handleChange}/>
+        </div>
 
+        <input className="form-control btn btn-outline-success" type="submit"/>
+      </div>
 
       </form>
       </>

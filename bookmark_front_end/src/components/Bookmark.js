@@ -27,21 +27,28 @@ class Bookmark extends React.Component {
   render () {
     return (
       <div className="card">
-      <h1>{this.props.bookmark.name}</h1>
-      <a href={this.props.bookmark.link}><img src={this.props.bookmark.logo} alt=""/></a>
-      <p>{this.props.bookmark.description}</p>
-      <div className="buttons">
-      <button onClick={()=>{this.toggleUpdateForm()}}>Update Bookmark</button>
-      {
-               this.state.showUpdate
-               ? <UpdateForm toggleUpdateForm={this.toggleUpdateForm}
-               bookmark={this.props.bookmark}
-               updateBookmark={this.props.updateBookmark}
-               bookmarks={this.props.bookmarks}/>
-               : null
-      }
-        <button onClick={()=> this.props.deleteBookmark(this.props.bookmark.id)}>DELETE</button>
-      </div>
+        <div className="card-header">
+          <h1>{this.props.bookmark.name}</h1>
+        </div>
+        <div className="card-body">
+          <a href={this.props.bookmark.link} target="_blank"><img src={this.props.bookmark.logo} alt=""/></a>
+        </div>
+        <div className="card-text">
+          <p>{this.props.bookmark.description}</p>
+        </div>
+        <div className="button-group">
+          <button className="btn btn-warning"onClick={()=>{this.toggleUpdateForm()}}>Update</button>
+
+            <button className="btn btn-danger"onClick={()=> this.props.deleteBookmark(this.props.bookmark.id)}>DELETE</button>
+        </div>
+        {
+                 this.state.showUpdate
+                 ? <UpdateForm toggleUpdateForm={this.toggleUpdateForm}
+                 bookmark={this.props.bookmark}
+                 updateBookmark={this.props.updateBookmark}
+                 bookmarks={this.props.bookmarks}/>
+                 : null
+        }
       </div>
     )
   }

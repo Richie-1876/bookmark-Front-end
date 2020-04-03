@@ -1,7 +1,7 @@
 import React from 'react';
 import Bookmark from './components/Bookmark.js'
 import Newform from './components/Newform.js'
-import './App.css';
+import Header from './components/Header.js'
 
 class App extends React.Component {
   constructor(props) {
@@ -17,7 +17,8 @@ class App extends React.Component {
 handleAddBookmark(bookmark){
   const copyBookmarks = [bookmark, ...this.state.bookmarks]
   this.setState({
-    bookmarks: copyBookmarks
+    bookmarks: copyBookmarks,
+    newBookmark: !this.state.newBookmark
   })
 }
 updateBookmark(copyBookmarks){
@@ -57,13 +58,14 @@ fetchBookmarks = async () => {
 render() {
   return (
     <div>
-    <button onClick={()=>{this.toggleNewForm()}}>Add new Bookmark</button>
+    <Header/>
+    <button className="btn btn-success"onClick={()=>{this.toggleNewForm()}}>Add new Bookmark</button>
     {
              this.state.newBookmark
              ? <Newform toggleNewForm={this.toggleNewForm}  handleAddBookmark={this.handleAddBookmark}/>
              : null
     }
-    <div>
+    <div className="Cards-container">
       {this.state.bookmarks.map(bookmark =>
         <Bookmark bookmark={bookmark} deleteBookmark={this.deleteBookmark}
         updateBookmark={this.updateBookmark}

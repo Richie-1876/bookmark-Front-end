@@ -51,18 +51,29 @@ async  handleSubmit(e){
   render() {
     return (
       <>
-      <form onSubmit={this.handleSubmit}>
+      <form className="new-form" onSubmit={this.handleSubmit}>
+
+      <div className="form-group" >
+
+      <div className="form-row">
         <input type='text' id='name' placeholder='name'onChange={this.handleChange}/>
 
         <input type='text' id='logo'placeholder='logo'onChange={this.handleChange}/>
 
-        <textarea rows='4' cols='50' id='description'placeholder='description'onChange={this.handleChange}></textarea>
-
         <input type='text' id='link'placeholder='url'onChange={this.handleChange}/>
+        </div>
 
+        <div className="form-row">
+        <textarea rows='4' cols='62' id='description'placeholder='description'onChange={this.handleChange}></textarea>
+        </div>
+
+
+
+        <div className="form-row">
         <input type="submit"/>
+        </div>
 
-
+        </div>
       </form>
       </>
     )
