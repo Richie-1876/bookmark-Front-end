@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
+import Bookmark from './components/Bookmark.js'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+  super(props)
+  this.state = {
+    bookmarks: []
+  }
 }
+fetchBookmarks = async () => {
+    let response = await fetch('http://localhost:3000/bookmarks')
+    let data = await response.json()
+    console.log(data)
+    this.setState({ bookmarks: data })
+  }
+  componentDidMount() {
+    this.fetchBookmarks()
+  }
+
+render() {
+  return (
+    <div>
+      {this.state.bookmarks.map(bookmark =>
+        <Bookmark bookmark={bookmark}/>
+      )}
+    </div>
+  )
+}
+}
+
 
 export default App;
