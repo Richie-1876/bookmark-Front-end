@@ -1,6 +1,7 @@
 import React from 'react';
 import Bookmark from './components/Bookmark.js'
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
   constructor(props) {
