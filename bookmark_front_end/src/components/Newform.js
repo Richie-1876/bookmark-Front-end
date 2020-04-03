@@ -34,7 +34,7 @@ async  handleSubmit(e){
         }
       })
       let data = await response.json()
-      this.prop.handleAddBookmark(data)
+      this.props.handleAddBookmark(data)
       this.props.toggleNewForm()
       this.state({
         name: '',
